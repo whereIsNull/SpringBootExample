@@ -56,9 +56,9 @@ public class UploadFormController {
 			RedirectAttributes redirectAttributes) {
 
 //		mongoDao.store(file);
-//		redirectAttributes.addFlashAttribute("message",
-//				"You successfully uploaded " + file.getOriginalFilename() + "!");
-
+		redirectAttributes.addFlashAttribute("message",
+				"You successfully uploaded " + file.getOriginalFilename() + "!");
+		System.out.println("uploaded: " + file.getOriginalFilename());
 		return "redirect:/movies";
 	}
 

@@ -4,3 +4,10 @@ spring:
       host: localhost
       port: 27017
       database: myVideoclub
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+server:
+  error:
+    path: /error
