@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+    <p>joer, lo que ha costao... y costará!</p>
+    <form method="POST" enctype="multipart/form-data" action="fup.cgi">
+	  File to upload: <input type="file" name="upfile"><br/>
+	  Notes about the file: <input type="text" name="note"><br/>
+	  <br/>
+	  <input type="submit" value="Press"> to upload the file!
+	</form>
+</body>
+</html>

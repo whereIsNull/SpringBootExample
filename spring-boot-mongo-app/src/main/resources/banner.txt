@@ -1,0 +1,5 @@
+spring.banner.image.location=classpath:fotoCV.jpg
+spring.banner.image.width=  //TODO
+spring.banner.image.height= //TODO
+spring.banner.image.margin= //TODO
+spring.banner.image.invert= //TODO
