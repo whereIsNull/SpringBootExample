@@ -4,7 +4,17 @@
 	<div th:if="${message}">
 		<h2 th:text="${message}"/>
 	</div>
-
+	
+	<div>
+		<h1>Form</h1>
+	    <form action="#" th:action="@{/user}" th:object="${user}" method="post">
+	    	<p>email: <input type="text" th:field="*{email}" /></p>
+	    	<p>nick: <input type="text" th:field="*{nick}" /></p>
+	    	<p>name: <input type="text" th:field="*{name}" /></p>
+	        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+	</div>
+	
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/movies">
 			<table>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,16 +20,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mymongo.springboot.dao.MongoDao;
+import com.mymongo.springboot.domain.User;
 import com.mymongo.springboot.exceptions.StorageFileNotFoundException;
+import com.mymongo.springboot.repository.UserRepository;
 
 @Controller
 public class UploadFormController {
 
-	private final MongoDao mongoDao;
-
 	@Autowired
-	public UploadFormController(MongoDao mongoDao) {
-		this.mongoDao = mongoDao;
+	private UserRepository userRepository;
+
+	
+	public UploadFormController() {
 	}
 
 	@GetMapping("/movies")
@@ -38,6 +41,8 @@ public class UploadFormController {
 //				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
 //						"serveFile", path.getFileName().toString()).build().toUri().toString())
 //				.collect(Collectors.toList()));
+		
+		model.addAttribute("user", new User());
 
 		return "uploadForm";
 	}
@@ -59,6 +64,12 @@ public class UploadFormController {
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 		System.out.println("uploaded: " + file.getOriginalFilename());
+		return "redirect:/movies";
+	}
+	
+	@PostMapping("/user")
+	public String handleUserUpload(@ModelAttribute User user, Model model) {
+		userRepository.save(user);
 		return "redirect:/movies";
 	}
 
